@@ -14,6 +14,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class AddUsers extends AppCompatActivity implements View.OnClickListener {
 
     EditText add_username_edittext;
@@ -21,7 +24,8 @@ public class AddUsers extends AppCompatActivity implements View.OnClickListener 
     RadioGroup add_radio_group;
     Spinner add_lang_spinner;
     Button add_add_button;
-
+    String strDate;
+    String strTime;
     DatabaseReference data_users;
 
     @Override
@@ -37,17 +41,40 @@ public class AddUsers extends AppCompatActivity implements View.OnClickListener 
         add_radio_group = findViewById(R.id.add_radio_group);
 
         add_add_button.setOnClickListener(this);
+        getCurrentDate();getCurrentTime();
+
     }
 
-    private void entry(){
+    public void getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("yyyy / MM / dd ");
+        strDate = mdformat.format(calendar.getTime());
+
+
+    }
+
+    public void getCurrentTime(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat md = new SimpleDateFormat("HH:mm:ss");
+        strTime = md.format(calendar.getTime());
+
+        Toast.makeText(this, strTime , Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void entry(){
         String name = add_username_edittext.getText().toString().trim();
         String age = add_userage_edittext.getText().toString();
         String lang = add_lang_spinner.getSelectedItem().toString();
-        int value = add_radio_group.getCheckedRadioButtonId();
+
+        //Build
         String user_phone_brand = Build.BRAND;
         String user_phone_model = Build.MODEL;
         String user_phone_version = Build.VERSION.RELEASE;
         int user_phone_api = Build.VERSION.SDK_INT;
+
+        //Sex
+        int value = add_radio_group.getCheckedRadioButtonId();
         String sex = null;
 
         if(value!=-1){
@@ -61,14 +88,18 @@ public class AddUsers extends AppCompatActivity implements View.OnClickListener 
         Toast.makeText(AddUsers.this, name +" "+ age +" "+ sex +" "+ lang + " " + user_phone_api + " " + user_phone_brand + " " + user_phone_model + " " + user_phone_version, Toast.LENGTH_LONG).show();
 
 
-        if((!name.isEmpty()) && (!age.isEmpty())){
+
+
+
+        if((!name.isEmpty()) && (!age.isEmpty()) && (!lang.isEmpty())){
 
             String id = data_users.push().getKey();
 
-            User_Info user = new User_Info(id, name, age, sex, lang,user_phone_brand,user_phone_model,user_phone_version,user_phone_api);
+            User_Info user = new User_Info(id, name, age, sex, lang,user_phone_brand,user_phone_model,user_phone_version,user_phone_api, strDate, strTime);
 
 
             data_users.child(id).child("Users Information").setValue(user);
+           // data_users.child(id).child("Voice Samples").setValue(voice);
 
             Toast.makeText(this, "Item Added", Toast.LENGTH_SHORT).show();
 

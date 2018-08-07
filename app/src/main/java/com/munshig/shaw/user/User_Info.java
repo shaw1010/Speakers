@@ -11,6 +11,8 @@ public class User_Info {
     String user_phone_model;
     String user_phone_version;
     int user_phone_api;
+    String time;
+    String date;
 
 
     public User_Info(String user_id,
@@ -21,7 +23,9 @@ public class User_Info {
             String user_phone_brand,
             String user_phone_model,
             String user_phone_version,
-            int user_phone_api) {
+            int user_phone_api,
+                     String date,
+                             String time) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_age = user_age;
@@ -31,6 +35,9 @@ public class User_Info {
         this.user_phone_model = user_phone_model;
         this.user_phone_version = user_phone_version;
         this.user_phone_api = user_phone_api;
+        this.time=time;
+        this.date=date;
+
 
     }
 
@@ -60,6 +67,22 @@ public class User_Info {
 
     public void setUser_phone_brand(String user_phone_brand) {
         this.user_phone_brand = user_phone_brand;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getUser_phone_model() {
