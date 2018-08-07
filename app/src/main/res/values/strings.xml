@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">User</string>
+
+    <array name="Sex">
+        <item>Female</item>
+        <item>Male</item>
+        <item>Lite!</item>
+    </array>
+
+    <array name="Lang">
+        <item>Hindi</item>
+        <item>Marwadi</item>
+        <item>Mewari</item>
+        <item>Gujrathi</item>
+        <item>English</item>
+        <item name="other_lang">Others</item>
+    </array>
+
+    <array name="Numbers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item><item>4</item><item>5</item><item>6</item><item>7</item><item>8</item>
+
+
+    </array>
+</resources>
